@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface EmployeeService {
     Employee save(Employee employee);
-    void deleteById(Long id);
+    String deleteById(Long id);
     Optional<Employee> getEmployeeById(Long id);
 
 }
