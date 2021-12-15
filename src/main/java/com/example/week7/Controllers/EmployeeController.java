@@ -3,6 +3,7 @@ package com.example.week7.Controllers;
 
 import com.example.week7.Models.Employee;
 import com.example.week7.Services.EmployeeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
