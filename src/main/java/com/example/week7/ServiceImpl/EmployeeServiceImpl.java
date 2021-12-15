@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 
@@ -18,7 +19,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
-
+    //ATOMIC -- ACID
+    //@Transactional
 
     @Override
     public Employee save(Employee employee) {
@@ -26,7 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public String deleteById(Long id) {
+        public String deleteById(Long id) {
         employeeRepository.deleteById(id);
         return HttpStatus.OK.toString();
     }
@@ -35,4 +37,5 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Optional<Employee> getEmployeeById(Long id) {
         return employeeRepository.findById(id);
     }
+
 }
