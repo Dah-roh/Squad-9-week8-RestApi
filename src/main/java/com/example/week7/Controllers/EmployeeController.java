@@ -5,12 +5,15 @@ import com.example.week7.Models.Employee;
 import com.example.week7.Services.EmployeeService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
 //the controller annotation is meant for MVC, while the restController annotation is meant for Rest API
-@RestController
-@RequestMapping("/")
+
+
+@RestController("/")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -25,14 +28,15 @@ public class EmployeeController {
         return employeeService.deleteById(id);
     }
 
-    @GetMapping("employee/delete")
-    public String deleteAnEmployee(@RequestParam("id") Long id){
-        return employeeService.deleteById(id);
-    }
+//    @GetMapping("employee/delete")
+//    public String deleteAnEmployee(@RequestParam("id") Long id){
+//        return employeeService.deleteById(id);
+//    }
+
 
     @GetMapping("employee/get/{id}")
-    public Employee getEmployee(@PathVariable("id") Long id){
-        return employeeService.getEmployeeById(id).get();
+    public ResponseEntity<Employee> getEmployee(@PathVariable("id") Long id){
+        return new ResponseEntity<>( employeeService.getEmployeeById(id).get(), HttpStatus.OK);
     }
 
     @GetMapping("employee/get")
